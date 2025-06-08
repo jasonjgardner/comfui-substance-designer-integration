@@ -38,7 +38,7 @@ A comprehensive ComfyUI plugin that enables seamless integration with Substance 
 1. Clone or download this repository to your ComfyUI custom nodes directory:
    ```bash
    cd /path/to/ComfyUI/custom_nodes/
-   git clone https://github.com/your-repo/comfyui-substance-designer-integration.git
+   git clone https://github.com/jasonjgardner/comfyui-substance-designer-integration.git
    ```
 
 2. Install Python dependencies:
