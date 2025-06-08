@@ -1,0 +1,255 @@
+{
+  "last_node_id": 5,
+  "last_link_id": 6,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "SubstanceCooker",
+      "pos": [50, 50],
+      "size": [350, 280],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "sbsar_file_path",
+          "type": "STRING",
+          "links": [1],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "cooking_log",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "output_directory",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SubstanceCooker"
+      },
+      "widgets_values": [
+        "./materials/metal_surface.sbs",
+        "./output/cooked",
+        "",
+        2,
+        true,
+        false,
+        false
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 2,
+      "type": "SubstanceParameterController",
+      "pos": [450, 50],
+      "size": [400, 350],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "sbsar_file_path",
+          "type": "STRING",
+          "link": 1,
+          "slot_index": 0
+        }
+      ],
+      "outputs": [
+        {
+          "name": "parameter_json",
+          "type": "STRING",
+          "links": [2],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "applied_parameters",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "material_info",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "preset_info",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SubstanceParameterController"
+      },
+      "widgets_values": [
+        "",
+        "{\n  \"roughness\": 0.3,\n  \"metallic\": 0.9,\n  \"basecolor_r\": 0.7,\n  \"basecolor_g\": 0.7,\n  \"basecolor_b\": 0.8,\n  \"tiling\": 4.0\n}",
+        "",
+        42,
+        true,
+        0.7,
+        true
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 3,
+      "type": "SubstanceRenderer",
+      "pos": [900, 50],
+      "size": [400, 400],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "sbsar_file_path",
+          "type": "STRING",
+          "link": 3,
+          "slot_index": 0
+        }
+      ],
+      "outputs": [
+        {
+          "name": "texture_paths",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "texture_images",
+          "type": "IMAGE",
+          "links": [4, 5],
+          "shape": 3,
+          "slot_index": 1
+        },
+        {
+          "name": "organized_outputs",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "render_log",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "output_directory",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SubstanceRenderer"
+      },
+      "widgets_values": [
+        "",
+        "./output/textures/variation_1",
+        "png",
+        "8",
+        "metal_variation_1",
+        "",
+        "",
+        "",
+        "",
+        4,
+        4000,
+        true,
+        false
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 4,
+      "type": "PreviewImage",
+      "pos": [1350, 50],
+      "size": [300, 300],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 4
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 5,
+      "type": "SaveImage",
+      "pos": [1350, 400],
+      "size": [300, 300],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 5
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "metal_variation"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    }
+  ],
+  "links": [
+    [1, 1, 0, 2, 0, "STRING"],
+    [2, 2, 0, 3, 7, "STRING"],
+    [3, 1, 0, 3, 0, "STRING"],
+    [4, 3, 1, 4, 0, "IMAGE"],
+    [5, 3, 1, 5, 0, "IMAGE"]
+  ],
+  "groups": [
+    {
+      "title": "Material Cooking",
+      "bounding": [30, 10, 390, 340],
+      "color": "#3f789e",
+      "font_size": 24
+    },
+    {
+      "title": "Parameter Control",
+      "bounding": [430, 10, 440, 440],
+      "color": "#8A8",
+      "font_size": 24
+    },
+    {
+      "title": "Rendering & Output",
+      "bounding": [880, 10, 800, 740],
+      "color": "#A88",
+      "font_size": 24
+    }
+  ],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}
+

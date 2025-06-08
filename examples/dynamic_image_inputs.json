@@ -1,0 +1,293 @@
+{
+  "last_node_id": 6,
+  "last_link_id": 8,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadImage",
+      "pos": [50, 50],
+      "size": [320, 314],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [1],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "input_texture.png",
+        "image"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 2,
+      "type": "ImageGenerate",
+      "pos": [50, 400],
+      "size": [320, 314],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [2],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageGenerate"
+      },
+      "widgets_values": [
+        "A detailed wood grain texture, high resolution, seamless",
+        512,
+        512,
+        42
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 3,
+      "type": "SubstanceCooker",
+      "pos": [400, 50],
+      "size": [350, 280],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "sbsar_file_path",
+          "type": "STRING",
+          "links": [3],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "cooking_log",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "output_directory",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SubstanceCooker"
+      },
+      "widgets_values": [
+        "./materials/wood_with_inputs.sbs",
+        "./output/cooked",
+        "",
+        2,
+        true,
+        false,
+        false
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 4,
+      "type": "SubstanceRenderer",
+      "pos": [800, 50],
+      "size": [500, 600],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "sbsar_file_path",
+          "type": "STRING",
+          "link": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "input_image_1",
+          "type": "IMAGE",
+          "link": 1,
+          "slot_index": 1
+        },
+        {
+          "name": "input_image_2",
+          "type": "IMAGE",
+          "link": 2,
+          "slot_index": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "texture_paths",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "texture_images",
+          "type": "IMAGE",
+          "links": [4, 5],
+          "shape": 3,
+          "slot_index": 1
+        },
+        {
+          "name": "organized_outputs",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "render_log",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        },
+        {
+          "name": "output_directory",
+          "type": "STRING",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SubstanceRenderer"
+      },
+      "widgets_values": [
+        "",
+        "./output/textures/dynamic_wood",
+        "png",
+        "8",
+        "dynamic_wood",
+        "",
+        "",
+        "{}",
+        "",
+        4,
+        4000,
+        true,
+        false,
+        "",
+        "diffuse_input",
+        "",
+        "grain_input",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 5,
+      "type": "PreviewImage",
+      "pos": [1350, 50],
+      "size": [300, 300],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 4
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "color": "#223",
+      "bgcolor": "#335"
+    },
+    {
+      "id": 6,
+      "type": "SaveImage",
+      "pos": [1350, 400],
+      "size": [300, 300],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 5
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "dynamic_wood_material"
+      ],
+      "color": "#223",
+      "bgcolor": "#335"
+    }
+  ],
+  "links": [
+    [1, 1, 0, 4, 1, "IMAGE"],
+    [2, 2, 0, 4, 2, "IMAGE"],
+    [3, 3, 0, 4, 0, "STRING"],
+    [4, 4, 1, 5, 0, "IMAGE"],
+    [5, 4, 1, 6, 0, "IMAGE"]
+  ],
+  "groups": [
+    {
+      "title": "Input Images",
+      "bounding": [30, 10, 360, 740],
+      "color": "#3f789e",
+      "font_size": 24
+    },
+    {
+      "title": "Material Processing",
+      "bounding": [380, 10, 390, 340],
+      "color": "#8A8",
+      "font_size": 24
+    },
+    {
+      "title": "Dynamic Rendering with Image Inputs",
+      "bounding": [780, 10, 540, 680],
+      "color": "#A88",
+      "font_size": 24
+    },
+    {
+      "title": "Output & Preview",
+      "bounding": [1330, 10, 340, 740],
+      "color": "#88A",
+      "font_size": 24
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.7,
+      "offset": [0, 0]
+    },
+    "workflow_description": "This workflow demonstrates the new image input feature of the Substance Renderer node. It shows how to use both loaded images and AI-generated content as input textures for Substance materials, enabling dynamic material creation workflows."
+  },
+  "version": 0.4
+}
+
