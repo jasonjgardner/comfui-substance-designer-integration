@@ -165,10 +165,8 @@ class SubstanceRenderTool(SubstanceToolBase):
         if memory_budget:
             args.extend(['--memory-budget', str(memory_budget)])
         
-        # Resolution setting
         if resolution:
-            # Set output resolution using --output-size parameter
-            args.extend(['--output-size', f"{resolution},{resolution}"])
+            args.extend(['--set-value', f"$outputsize@{resolution},{resolution}"])
         
         if verbose:
             args.append('--verbose')
